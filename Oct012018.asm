@@ -7,7 +7,7 @@ ExitProcess PROTO, dwExitcode:DWORD
 INCLUDE Irvine32.inc
 
 .data
-	buffer1 BYTE "我是U10516045王冠中!",0
+	buffer1 BYTE "我是U10516045xxx!",0
 	buffer2 BYTE "請輸入一個數字字串:",0
 	buffer3 BYTE 32 DUP(0)
 	maxsize = ($ - buffer3)

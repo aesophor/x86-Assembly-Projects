@@ -5,7 +5,8 @@ Assignments from x86 Assembly class.
 Windows versions are written under Visual Studio.
 
 # Linux
-Linux versions are written for fun.
+Linux versions are written for fun.    
+http://syscalls.kernelgrok.com/
 
 * nasm as assembler
 * ld as linker

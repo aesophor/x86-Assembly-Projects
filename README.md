@@ -6,6 +6,8 @@ Windows versions are written under Visual Studio.
 
 # Linux
 Linux versions are written for fun.
+
 * nasm as assembler
 * ld as linker
+
 Each of them comes with a Makefile.

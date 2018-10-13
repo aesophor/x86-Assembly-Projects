@@ -14,8 +14,26 @@ section .text
 _start:
     ; Read the first integer from stdin.
     mov rax, prompt_text1
+    call _printString 
+    mov rax, integer1
+    mov rcx, 4
+    call _readString
+
+    ; Read the second integer from stdin.
+    mov rax, prompt_text2
     call _printString
-    
+    mov rax, integer2
+    mov rcx, 4
+    call _readString
+
+    mov rax, [integer1]
+    add rax, [integer2]
+    and al, 0xf
+    add al, 0x30
+    mov [sum], rax
+    mov rax, sum
+    call _printString
+
     ; sys_exit(0);
     mov rax, 60
     mov rdi, 0
@@ -45,5 +63,13 @@ _printString_nextChar:
     ret
 
 
+; Reads input from stdin.
+; input : rax - pointer to the buffer to store input.
+;         rcx - number of characters to read.
 _readString:
-    
+    mov rsi, rax                ; starting address of input buffer.
+    mov rdx, rcx                ; input string length.
+    mov rax, 0                  ; id of sys_read = 0
+    mov rdi, 0                  ; fd of stdin = 0
+    syscall
+    ret

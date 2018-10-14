@@ -6,7 +6,7 @@ Windows versions are written under Visual Studio.
 
 # Linux
 Linux versions are written for fun.    
-http://syscalls.kernelgrok.com/
+[syscall table for linux x86_64](https://blog.rchapman.org/posts/Linux_System_Call_Table_for_x86_64/)
 
 * nasm as assembler
 * ld as linker

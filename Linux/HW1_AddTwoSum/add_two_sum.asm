@@ -1,3 +1,12 @@
+STDIN equ 0
+STDOUT equ 1
+STDERR equ 2
+
+SYS_READ equ 0
+SYS_WRITE equ 1
+SYS_EXIT equ 60
+
+
 section .data
     prompt_text1    db "Please enter the first integer: ", 0x00
     prompt_text2    db "Please enter the second integer: ", 0x00
@@ -45,7 +54,7 @@ _start:
     call _printDecimal
 
     ; Set up sys_exit.
-    mov rax, 60
+    mov rax, SYS_EXIT
     mov rdi, 0
     syscall
 
@@ -64,8 +73,8 @@ _printString_nextChar:
     jne _printString_nextChar   ; If not, continue to fetch the next character.
     dec rcx                     ; Decrement string length by one since even an empty string will have len=1.
     ; Set up sys_write.
-    mov rax, 1                  ; id of sys_write = 1
-    mov rdi, 1                  ; fd of stdout = 1
+    mov rax, SYS_WRITE
+    mov rdi, STDOUT
     pop rsi                     ; Pop the starting address of the string to rsi.
     mov rdx, rcx                ; String length.
     syscall
@@ -91,8 +100,8 @@ _printDecimal_nextChar:
     jg _printDecimal_nextChar
     inc rsi                     ; Make sure rsi points to the first ascii digit.
     ; Set up sys_write
-    mov rax, 1
-    mov rdi, 1
+    mov rax, SYS_WRITE
+    mov rdi, STDOUT
     mov rdx, rcx
     syscall
     ret
@@ -107,8 +116,8 @@ _readString:
     ; Set up sys_read.
     mov rsi, rax                ; Starting address of input buffer.
     mov rdx, rcx                ; Input string length.
-    mov rax, 0                  ; id of sys_read = 0.
-    mov rdi, 0                  ; fd of stdin = 0.
+    mov rax, SYS_READ
+    mov rdi, STDIN
     syscall
     ; Restore registers to previous state.
     pop rcx

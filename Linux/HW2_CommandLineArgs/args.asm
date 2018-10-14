@@ -32,6 +32,7 @@ _start:
     print newline
     mov rax, rsp                    ; Copy the address held by rsp to rax.
     mov [stack_ptr], rax            ; Also create a copy in memory.
+
 _printArgsByRsp:
     ; Print the LHS labels.
     print argv_label1
@@ -53,11 +54,11 @@ _printArgsByRsp:
     jne _printArgsByRsp
 
 
-    ; Reset argv_no
-    mov qword [argv_no], 0
+    mov qword [argv_no], 0          ; Reset argv_no
     print newline
     print text2
     print newline
+
 _printArgsByPop:
     ; Print the LHS labels.
     print argv_label1

@@ -4,7 +4,7 @@
 In x86_64 linux, when a program is executed, its command line arguments are pushed onto the stack in the following order:
 
 | Item | Location in stack |
-| ----- | ---- | ----------- | ------- | -------------- |
+| ----- | ---- |
 | argc | rsp |
 | args[0] (i.e., *path) | rsp + 8 |
 | args[1] | rsp + 16 |

@@ -8,14 +8,21 @@ SYS_READ equ 0
 SYS_WRITE equ 1
 SYS_EXIT equ 60
 
-; Useful ascii chars.
-newline db 0xa, 0x00
+; In bytes.
+TEXT_BUFFER_SIZE equ 512
+
+section .data
+    newline db 0xa, 0x00
+
+section .bss
+    text_buffer     resb TEXT_BUFFER_SIZE
 
 
 ; Prints a Null-terminated string.
 ; Args: %1 - starting address of the string.
 %macro print 1
     mov rax, %1
+    push rax                    ; Preserve the starting address of the string.
     xor rcx, rcx                ; Clear rcx and use it as counter for string length.
     ; Loop through the string to check string length until a 0x00 is found.
 %%nextChar:
@@ -23,12 +30,12 @@ newline db 0xa, 0x00
     inc rax                     ; Increment the pointer.
     inc rcx                     ; Increment string length.
     cmp bl, 0x00                ; Check if current character is a null byte.
-    jne %%nextChar  ; If not, continue to fetch the next character.
+    jne %%nextChar              ; If not, continue to fetch the next character.
     dec rcx                     ; Decrement string length by one since even an empty string will have len=1.
     ; Set up sys_write.
     mov rax, SYS_WRITE
     mov rdi, STDOUT
-    mov rsi, %1                 ; Load the starting address of the string.
+    pop rsi                     ; Restore the starting address of the string.
     mov rdx, rcx                ; String length.
     syscall
 %endmacro
@@ -36,12 +43,10 @@ newline db 0xa, 0x00
 
 ; Prints binary in decimal.
 ; Args: %1 - binary value to be converted to ascii.
-;       %2 - pointer to where ascii digits will be stored.
-;       %3 - buffer size.
-%macro printVal 3
+%macro printVal 1
     mov rax, %1
-    mov rsi, %2
-    add rsi, %3                 ; rsi points to last ascii digit.
+    mov rsi, text_buffer
+    add rsi, TEXT_BUFFER_SIZE-1 ; rsi points to last ascii digit.
     xor rcx, rcx                ; Clear rcx nad use it as counter for string length.
     ; Divide binary by 10 and get each digit in reverse order,
     ; and convert each digit to ascii one by one.

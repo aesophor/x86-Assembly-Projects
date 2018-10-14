@@ -8,7 +8,6 @@ section .data
 section .bss
     argc            resb 8
     argv_no         resb 8
-    text_buffer     resb 8
 
 section .text
     global _start
@@ -16,30 +15,29 @@ section .text
 
 _start:
     ; Print argc.
-    pop rax
-    mov [argc], rax
+    pop rbx
+    mov [argc], rbx
 
  _printArgc:
     print argc_label
-    printVal [argc], text_buffer, 8
+    printVal [argc]
     print newline
    
 _printArgs:
     ; Print the LHS labels.
     print argv_label1
-    printVal [argv_no], text_buffer, 2
+    printVal [argv_no]
     print argv_label2
     ; Print the acutal argument.
     pop rbx
-    mov rbx, [rbx]                      ; rbx now contains address to the string.
-    mov [text_buffer], rbx              ; move the address into text_buffer.
-    print text_buffer
+    print rbx
     print newline
     ; Continue to print the next argument.
-    mov rcx, [argc]
     mov rax, [argv_no]
     inc rax
     mov [argv_no], rax
+
+    mov rcx, [argc]
     cmp rax, rcx
     jne _printArgs
 

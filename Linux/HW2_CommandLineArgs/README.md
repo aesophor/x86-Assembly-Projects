@@ -3,7 +3,7 @@
 ## Overview
 In x86_64 linux, when a program is executed, its command line arguments are pushed onto the stack in the following order:
 
-| Item | Location in stack | Note |
+| Item | Location | Note |
 | ---- | ---- | ---- |
 | argc | rsp | Top |
 | args[0] (i.e., *path) | rsp + 8 ||
@@ -28,4 +28,5 @@ which is prohibited by the operating system.
 
 
 ## Further Reading
+[Stack frame layout on x86-64](https://eli.thegreenplace.net/2011/09/06/stack-frame-layout-on-x86-64/) by Eli Bendersky
 [All About EBP](https://practicalmalwareanalysis.com/2012/04/03/all-about-ebp/) by andykhonig

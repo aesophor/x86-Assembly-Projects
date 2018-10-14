@@ -10,7 +10,7 @@ In x86_64 linux, when a program is executed, its command line arguments are push
 | args[1] | rsp + 16 ||
 | args[2] | rsp + 24 ||
 | args[3] | rsp + 32 ||
-| args[n] | rsp + 8 * (n-1) ||
+| args[n] | rsp + 8 * (n-1) | Bottom |
 
 You should copy the address in rsp to another register (e.g., to rax), and manipulate on rax!
 (On x86 linux, the rsp should be replaced by esp, and the gap between arguments is 4 bytes.)
@@ -18,10 +18,11 @@ You should copy the address in rsp to another register (e.g., to rax), and manip
 ## Example
 When one executes `./args punk ass nigga`, then the stack layout should be like this:
 
-* 4
+* 4 (Top)
 * mem address to "./args"
 * mem address to "punk"
-* mem address to "nigga"
+* mem address to "ass"
+* mem address to "nigga" (Bottom)
 
 Note that going beyond the program's stack would cause a segmentation fault, meaning that your program is trying to access some part of memory that is owned by another process,
 which is prohibited by the operating system.

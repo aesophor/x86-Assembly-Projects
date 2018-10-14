@@ -32,11 +32,14 @@ _start:
     mov [num2], rax
 
     ; Add two numbers.
-    xor rax, rax
-    xor rbx, rbx
     mov eax, [num1]
     mov ebx, [num2]
     add rax, rbx
+
+    ; Store binary result to sum.
+    mov [sum], rax
+
+    ; Print the result in ascii.
     mov rsi, sum_text
     mov rcx, 4
     call _printDecimal
@@ -82,10 +85,11 @@ _printDecimal_nextChar:
     xor rdx, rdx                ; Clear rdx prior to division.
     div rbx                     ; Divide binary by 10. Remainder will be in rdx.
     or dl, 0x30                 ; Tag 0x30 to remainder to make it ascii.
-    mov [rsi], dl
-    dec rsi
-    cmp rax, 0
-    jne _printDecimal_nextChar
+    mov [rsi], dl               ; Move ascii digit to the buffer.
+    dec rsi                     ; Decrement pointer.
+    cmp rax, 0                  ; Continue looping while rax > 0
+    jg _printDecimal_nextChar
+    inc rsi                     ; Make sure rsi points to the first ascii digit.
     ; Set up sys_write
     mov rax, 1
     mov rdi, 1

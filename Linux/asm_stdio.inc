@@ -9,7 +9,7 @@ SYS_WRITE equ 1
 SYS_EXIT equ 60
 
 ; In bytes.
-TEXT_BUFFER_SIZE equ 512
+TEXT_BUFFER_SIZE equ 256
 
 section .data
     newline db 0xa, 0x00

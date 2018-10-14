@@ -13,9 +13,10 @@ In x86_64 linux, when a program is executed, its command line arguments are push
 | args[n] | rsp + 8 * (n-1) ||
 
 You should copy the address in rsp to another register (e.g., to rax), and manipulate on rax!
-(On x86 linux, the rsp should be replaced by esp, and the gap between arguments are 4 bytes.)
+(On x86 linux, the rsp should be replaced by esp, and the gap between arguments is 4 bytes.)
 
-For example, when one executes `./args punk ass nigga`, then the stack layout should be like this:
+## Example
+When one executes `./args punk ass nigga`, then the stack layout should be like this:
 
 * 4
 * mem address to "./args"

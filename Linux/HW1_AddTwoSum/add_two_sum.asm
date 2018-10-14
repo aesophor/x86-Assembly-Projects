@@ -18,13 +18,13 @@ section .text
 
 _start:
     ; Read the first integer from stdin.
-    printString prompt_text1
-    readBinary num1_text, 8
+    print prompt_text1
+    readVal num1_text, 8
     mov [num1], rax                     ; Result of readBinary stored in rax.
 
     ; Read the second integer from stdin.
-    printString prompt_text2
-    readBinary num2_text, 8
+    print prompt_text2
+    readVal num2_text, 8
     mov [num2], rax                     ; Result of readBinary stored in rax.
 
     ; Add two numbers, and store addition result to sum.
@@ -34,5 +34,5 @@ _start:
     mov [sum], rax
 
     ; Print the result in ascii.
-    printDecimal rax, sum_text, 8
+    printVal rax, sum_text, 8
     exit 0

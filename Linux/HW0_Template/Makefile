@@ -1,7 +1,7 @@
 ASSEMBLER=nasm
 ASSEMBLER_FLAGS=-f elf64
-BIN=argtest
-SRC=argtest.asm
+BIN=main
+SRC=main.asm
 
 all:
 	$(ASSEMBLER) $(ASSEMBLER_FLAGS) -o $(BIN).o $(SRC) && ld -o $(BIN) $(BIN).o

@@ -1,15 +1,20 @@
+; File descriptors.
 STDIN equ 0
 STDOUT equ 1
 STDERR equ 2
 
+; Syscalls ref no.
 SYS_READ equ 0
 SYS_WRITE equ 1
 SYS_EXIT equ 60
 
+; Useful ascii chars.
+newline db 0xa, 0x00
+
 
 ; Prints a Null-terminated string.
-; Args: %1 - string
-%macro printString 1
+; Args: %1 - starting address of the string.
+%macro print 1
     mov rax, %1
     xor rcx, rcx                ; Clear rcx and use it as counter for string length.
     ; Loop through the string to check string length until a 0x00 is found.
@@ -33,7 +38,7 @@ SYS_EXIT equ 60
 ; Args: %1 - binary value to be converted to ascii.
 ;       %2 - pointer to where ascii digits will be stored.
 ;       %3 - buffer size.
-%macro printDecimal 3
+%macro printVal 3
     mov rax, %1
     mov rsi, %2
     add rsi, %3                 ; rsi points to last ascii digit.
@@ -76,7 +81,7 @@ SYS_EXIT equ 60
 ; Args: %1 - pointer to the buffer to store input
 ;       %2 - number of characters to read.
 ; Returns: rax - binary value.
-%macro readBinary 2
+%macro readVal 2
     readString %1, %2           ; Read string of numbers into [rax].
     mov rsi, %1                 ; Copy input buffer address to rsi.
     xor rax, rax                ; Clear rax and use it to store binary result.

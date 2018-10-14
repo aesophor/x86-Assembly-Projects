@@ -3,12 +3,14 @@
 ## Overview
 In x86_64 linux, when a program is executed, its command line arguments are pushed onto the stack in the following order:
 
-* argc                      - rsp
-* args[0] (i.e., *path)     - rsp + 8
-* args[1]                   - rsp + 16
-* args[2]                   - rsp + 24
-* args[3]                   - rsp + 32
-* args[n]                   - rsp + 8 * (n-1)
+| Item | Location in stack |
+| ----- | ---- | ----------- | ------- | -------------- |
+| argc | rsp |
+| args[0] (i.e., *path) | rsp + 8 |
+| args[1] | rsp + 16 |
+| args[2] | rsp + 24 |
+| args[3] | rsp + 32 |
+| args[n] | rsp + 8 * (n-1) |
 
 You should copy the address in rsp to another register (e.g., to rax), and manipulate on rax!
 (On x86 linux, the rsp should be replaced by esp, and the gap between arguments are 4 bytes.)

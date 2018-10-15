@@ -1,0 +1,233 @@
+Microsoft (R) Macro Assembler (x64) Version 14.14.26429.4   10/15/18 11:24:03
+U10516045_ch5_1_x64.asm					     Page 1 - 1
+
+
+				ExitProcess		proto
+				ReadInt64		proto
+				ReadString		proto
+				WriteInt64		proto
+				WriteString		proto
+				Crlf			proto
+				Randomize		proto
+				RandomRange		proto
+
+ 00000000			.data
+ 00000000 A7 DA AC 4F 75		buffer1		BYTE "我是u10516045 王冠中", 0
+	   31 30 35 31 36
+	   30 34 35 20 A4
+	   FD AB 61 A4 A4
+	   00
+ 00000015 BD D0 BF E9 A4		buffer2		BYTE "請輸入Random Number的數量(少於50): ", 0
+	   4A 52 61 6E 64
+	   6F 6D 20 4E 75
+	   6D 62 65 72 AA
+	   BA BC C6 B6 71
+	   28 A4 D6 A9 F3
+	   35 30 29 3A 20
+	   00
+ 00000039 BD D0 BF E9 A4		buffer3		BYTE "請輸入Random Number的lowerbound: ", 0
+	   4A 52 61 6E 64
+	   6F 6D 20 4E 75
+	   6D 62 65 72 AA
+	   BA 6C 6F 77 65
+	   72 62 6F 75 6E
+	   64 3A 20 00
+ 0000005B BD D0 BF E9 A4		buffer4		BYTE "請輸入Random Number的upperbound: ", 0
+	   4A 52 61 6E 64
+	   6F 6D 20 4E 75
+	   6D 62 65 72 AA
+	   BA 75 70 70 65
+	   72 62 6F 75 6E
+	   64 3A 20 00
+ 0000007D 50 72 65 73 73		prompt		BYTE "Press ENTER to continue...", 0
+	   20 45 4E 54 45
+	   52 20 74 6F 20
+	   63 6F 6E 74 69
+	   6E 75 65 2E 2E
+	   2E 00
+ 00000098 2C 20 00			gap			BYTE ", ", 0
+ 0000009B  00000033 [			randArray	QWORD 51 DUP(0)
+	    0000000000000000
+	   ]
+ 00000233  00000033 [			targetArray QWORD 51 DUP(0)
+	    0000000000000000
+	   ]
+ 000003CB				itemcount	QWORD ?
+	   0000000000000000
+ 000003D3				lowerbound	QWORD ?
+	   0000000000000000
+ 000003DB				upperbound  QWORD ?
+	   0000000000000000
+ 000003E3  00000064 [			temp		BYTE 100 DUP(0)
+	    00
+	   ]
+
+ 00000000			.code
+ 00000000			main proc
+ 00000000  48/ BA			mov rdx, OFFSET buffer1
+	   0000000000000000 R
+ 0000000A  E8 00000000 E		call WriteString
+ 0000000F  E8 00000000 E		call Crlf
+
+ 00000014  48/ BA			mov rdx, OFFSET buffer2
+	   0000000000000015 R
+ 0000001E  E8 00000000 E		call WriteString
+ 00000023  E8 00000000 E		call ReadInt64
+ 00000028  48/ 89 05			mov itemcount, rax
+	   000003CB R
+ 0000002F  E8 00000000 E		call Crlf
+
+ 00000034  48/ BA			mov rdx, OFFSET buffer3
+	   0000000000000039 R
+ 0000003E  E8 00000000 E		call WriteString
+ 00000043  E8 00000000 E		call ReadInt64
+ 00000048  48/ 89 05			mov lowerbound, rax
+	   000003D3 R
+ 0000004F  E8 00000000 E		call Crlf
+
+ 00000054  48/ BA			mov rdx, OFFSET buffer4
+	   000000000000005B R
+ 0000005E  E8 00000000 E		call WriteString
+ 00000063  E8 00000000 E		call ReadInt64
+ 00000068  48/ 89 05			mov upperbound, rax
+	   000003DB R
+ 0000006F  E8 00000000 E		call Crlf
+
+ 00000074  E8 00000000 E		call Randomize
+ 00000079  48/ 8B 0D			mov rcx, itemcount
+	   000003CB R
+ 00000080  48/ C7 C6			mov rsi, 0
+	   00000000
+ 00000087			L1:
+ 00000087  48/ 8B 05			mov rax, upperbound
+	   000003DB R
+ 0000008E  48/ 2B 05			sub rax, lowerbound
+	   000003D3 R
+ 00000095  E8 00000000 E		call RandomRange
+ 0000009A  48/ 03 05			add rax, lowerbound
+	   000003D3 R
+ 000000A1  48/ 89 86			mov randArray[rsi], rax
+	   0000009B R
+ 000000A8  48/ 83 C6 08			add rsi, TYPE randArray
+ 000000AC  E2 D9			loop L1
+
+ 000000AE  48/ BE			mov rsi, OFFSET randArray
+	   000000000000009B R
+ 000000B8  48/ 8B 0D			mov rcx, itemcount
+	   000003CB R
+ 000000BF  E8 0000009E			call WriteIntegerArray
+ 000000C4  E8 00000000 E		call Crlf
+
+ 000000C9  48/ BA			mov rdx, OFFSET prompt
+	   000000000000007D R
+ 000000D3  E8 00000000 E		call WriteString
+ 000000D8  48/ BA			mov rdx, OFFSET temp
+	   00000000000003E3 R
+ 000000E2  48/ C7 C1			mov rcx, 99
+	   00000063
+ 000000E9  E8 00000000 E		call ReadString
+ 000000EE  E8 00000000 E		call Crlf
+
+ 000000F3  48/ BE			mov rsi, OFFSET randArray
+	   000000000000009B R
+ 000000FD  48/ BF			mov rdi, OFFSET targetArray
+	   0000000000000233 R
+ 00000107  48/ 8B 0D			mov rcx, itemcount
+	   000003CB R
+ 0000010E  E8 00000073			call ReverseIntegerArray
+
+ 00000113  48/ BE			mov rsi, OFFSET targetArray
+	   0000000000000233 R
+ 0000011D  48/ 8B 0D			mov rcx, itemcount
+	   000003CB R
+ 00000124  E8 00000039			call WriteIntegerArray
+ 00000129  E8 00000000 E		call Crlf
+
+ 0000012E  48/ BA			mov rdx, OFFSET prompt
+	   000000000000007D R
+ 00000138  E8 00000000 E		call WriteString
+ 0000013D  48/ BA			mov rdx, OFFSET temp
+	   00000000000003E3 R
+ 00000147  48/ C7 C1			mov rcx, 99
+	   00000063
+ 0000014E  E8 00000000 E		call ReadString
+ 00000153  E8 00000000 E		call Crlf
+ 00000158  B9 00000000			mov ecx, 0
+ 0000015D  E8 00000000 E		call ExitProcess
+ 00000162			main endp
+
+
+ 00000162			WriteIntegerArray proc uses rsi rdx rax
+ 00000165			WIA:
+ 00000165  48/ 8B 06			mov rax, [rsi]
+ 00000168  E8 00000000 E		call WriteInt64
+ 0000016D  48/ BA			mov rdx, OFFSET gap
+	   0000000000000098 R
+ 00000177  E8 00000000 E		call WriteString
+ 0000017C  48/ 83 C6 08			add rsi, 8
+ 00000180  E2 E3			loop WIA
+					ret
+ 00000186			WriteIntegerArray endp
+
+
+ 00000186			ReverseIntegerArray proc
+ 00000186  FF 36			push QWORD ptr [rsi]
+ 00000188  48/ 83 C6 08			add rsi, 8
+ 0000018C  E2 07			loop RIA
+ 0000018E  8F 07			pop QWORD ptr [rdi]
+ 00000190  48/ 83 C7 08			add rdi, 8
+ 00000194  C3				ret
+
+ 00000195			RIA:
+ 00000195  E8 FFFFFFEC			call ReverseIntegerArray
+ 0000019A  8F 07			pop QWORD ptr [rdi]
+ 0000019C  48/ 83 C7 08			add rdi, 8
+ 000001A0  C3				ret
+ 000001A1			ReverseIntegerArray endp
+
+				end
+Microsoft (R) Macro Assembler (x64) Version 14.14.26429.4   10/15/18 11:24:03
+U10516045_ch5_1_x64.asm					     Symbols 2 - 1
+
+
+
+
+Procedures, parameters, and locals:
+
+                N a m e                 Type     Value    Attr
+
+Crlf . . . . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+ExitProcess  . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+RandomRange  . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+Randomize  . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+ReadInt64  . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+ReadString . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+ReverseIntegerArray  . . . . . .	P 	 00000186 _TEXT	Length= 0000001B Public
+  RIA  . . . . . . . . . . . . .	L 	 00000195 _TEXT	
+WriteInt64 . . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+WriteIntegerArray  . . . . . . .	P 	 00000162 _TEXT	Length= 00000024 Public
+  WIA  . . . . . . . . . . . . .	L 	 00000165 _TEXT	
+WriteString  . . . . . . . . . .	P 	 00000000 Length= 00000000 External
+main . . . . . . . . . . . . . .	P 	 00000000 _TEXT	Length= 00000162 Public
+  L1 . . . . . . . . . . . . . .	L 	 00000087 _TEXT	
+
+
+Symbols:
+
+                N a m e                 Type     Value    Attr
+
+buffer1  . . . . . . . . . . . .	Byte	 00000000 _DATA	
+buffer2  . . . . . . . . . . . .	Byte	 00000015 _DATA	
+buffer3  . . . . . . . . . . . .	Byte	 00000039 _DATA	
+buffer4  . . . . . . . . . . . .	Byte	 0000005B _DATA	
+gap  . . . . . . . . . . . . . .	Byte	 00000098 _DATA	
+itemcount  . . . . . . . . . . .	QWord	 000003CB _DATA	
+lowerbound . . . . . . . . . . .	QWord	 000003D3 _DATA	
+prompt . . . . . . . . . . . . .	Byte	 0000007D _DATA	
+randArray  . . . . . . . . . . .	QWord	 0000009B _DATA	
+targetArray  . . . . . . . . . .	QWord	 00000233 _DATA	
+temp . . . . . . . . . . . . . .	Byte	 000003E3 _DATA	
+upperbound . . . . . . . . . . .	QWord	 000003DB _DATA	
+
+	   0 Warnings
+	   0 Errors

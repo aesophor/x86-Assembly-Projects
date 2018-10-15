@@ -78,3 +78,9 @@ _printArgsByPop:
     jne _printArgsByPop
 
     exit 0
+
+
+_punk:
+    mov rax, 5
+    mov rbx, 3
+    ret

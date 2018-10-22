@@ -9,7 +9,7 @@ Linux versions are not a part of assignments. I taught myself x86_64 linux assem
 
 
 Some tools I used:
-
+ 
 * nasm - a portable 80x86 assembler
 * ld - the GNU linker
 * make - for building programs

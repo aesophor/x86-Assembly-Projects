@@ -220,3 +220,20 @@ L2:
 3. Write a CALL statement that calls a procedure named MyProc in an external link library. **call MyProc**
 4. What is the name of the 32-bit link library supplied with this book? **Irvine32.inc**
 5. What type of file is `kernel32.dll`? **Dynamic Linked Library which is fundamental to MS-Windows.**
+
+### 5.4 Section Review (p. 210)
+1. Which procedure generates a random integer within a selected range? **RandomRange**
+2. Which procedure displays "Press [Enter] to continue..." and waits for the user to press the Enter key? **WaitMsg**
+3. Write statements that cause a program to pause for 700 msecs.
+**mov eax, 700**
+**call Delay**
+4. Which procedure from the link library writes an unsigned integer to the console window in decimal format? **WriteDec**
+5. Which procedure from the link library places the cursor at a specific console windows location? **Gotoxy**
+6. Write the INCLUDE directive that is required when using the Irvine32 library. **include Irvine32.inc**
+7. What types of statements are inside the Irvine32.inc file? 
+8. What are the required input parameters for the DumpMem procedure?
+9. What are the required input parameters for the ReadString procedure?
+10. Which processor status flags are displayed by the DumpRegs procedure? **CF, SF, ZF, OF, AF, PF** 
+
+### 6.2 Section Review
+1. Write a single instruction using 16-bit operands that clears the high 8 bits of AX and does not change the low 8 bits. 

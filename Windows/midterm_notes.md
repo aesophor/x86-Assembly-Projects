@@ -2,7 +2,7 @@
 
 ### 3.1 Section Review (p. 95)
 1. Using the value -35, write it as an integer literal in decimal, hexadecimal, octal and binary formats that are consistent with MASM syntax.
-2.  Is A5h a valid hexadecimal literal? **No. A leading 0 is required**
+2.  Is A5h a valid hexadecimal literal? **No. A leading 0 is required (A hexadecimal literal beginning with a letter must have a leading zero to prevent the assembler from interpreting it as an identifier.)**
 3. Does the multiplication operator (*) has a higher precedence than the division operator (/) in integer expressions? **No. Same.**
 4. Create a single integer expression that uses all the operators from Section 3.1.2. Calculate the value of the expression. **30 mod (3 * 4) + (3 - 1) / 2**
 5. Write the real number -6.2 x 10^4 as a real number literal using MASM syntax. **-6.2E + 04**
@@ -101,5 +101,50 @@ setupAL
 `mov esi, OFFSET myArray` **SetupESI TEXTEQU \<mov esi, OFFSET myArray\>**
 
 ### 4.1 Section Review (p. 136)
+```
+mov dest, src
+mov ds, ax    ; modify a segment reg: OK
+mov ip, ax    ; modify the instruction pointer: ERROR
+```
 1. What are the three basic types of operands? **Register / Immediate / Memory**
-2. The destination operand of a MOV instruction cannot be a segment register?
+2. The destination operand of a MOV instruction cannot be a segment register? **false**
+3. In a MOV instruction, the second operand is known as the destination operand. **false**
+4. The EIP register cannot be the destination operand of a MOV instruction. **true (EIP is read only, i.e., cannot be modified directly by a user.)**
+5. In the operand notation used by Intel, what does reg/mem32 indicate? **a 32-bit register or memory operand**
+6. In the operand notation used by Intel, what does imm16 indicate? **a 16-bit immediate operand**
+
+### 4.2 Section Review (p. 144)
+```
+CF -> Set to 1 when last arithmetic operation exceeds its Unsigned range.
+OF -> 正正得負 or 負負得正
+SF -> If MSB = 1, then SF = 1
+```
+```
+.data
+val1 BYTE  10h
+val2 WORD  8000h
+val3 DWORD 0FFFFh
+val4 WORD  7FFFh
+```
+1. Write an instruction that increments val2. **inc val2**
+2. Write an instruction that subtracts val3 from EAX. **sub eax, val3**
+3. Write instructions that subtract val4 from val2.
+**mov ax, val4**
+**sub val2, ax**
+4. If val2 is incremented by 1 using the ADD instruction, what will be the values of the Carry and Sign flags? **1000b 0x0 0x0 0001; CF = 0; SF = 1** Note: 8h = 1000b.
+5. If val4 is incremented by 1 using the ADD instruction, what will be the values of the Overflow and Sign flags? **1000b 0x0 0x0 0x0; OF = 1; SF = 1**
+6. Where indicated, write down the values of the Carry, Sign, Zero and Overflow flags after each instruction has executed (question a, b, c are inter-independent):
+```
+mov ax, 7ff0h   ; 0111 1111 1111 0000
+add al, 10h     ; a. CF = 1 ; SF = 0 ; ZF = 1 ; OF = 0
+add ah, 1       ; b. CF = 0; SF = 1; ZF = 0; OF = 1
+add ax, 2       ; c. CF = 0; SF = 1; ZF = 0; OF = 0
+
+a. mov ax, 7ff0h   ; 0111 1111 1111 0000
+                             + 0001 0000
+                             -----------
+                             1 0000 0000 (正+負，故OF = 0; Unsigned爆開，CF = 0)
+```
+* Further Reading: [carry flag vs overflow flag](https://stackoverflow.com/questions/8496185/assembly-carry-flag-vs-overflow-flag#13424707)
+
+### 4.3 Section Review (p. 149)

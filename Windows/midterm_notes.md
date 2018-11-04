@@ -148,3 +148,18 @@ a. mov ax, 7ff0h   ; 0111 1111 1111 0000
 * Further Reading: [carry flag vs overflow flag](https://stackoverflow.com/questions/8496185/assembly-carry-flag-vs-overflow-flag#13424707)
 
 ### 4.3 Section Review (p. 149)
+1. The OFFSET operator always returns a 16-bit value. **false**
+2. The PTR operator returns the 32-bit address of a variable. **false (PTR is used to override the declared size of an operand.)**
+3. The TYPE operator returns a value of 4 for doubleword operands. **true**
+4. The LENGTHOF operator returns the number of bytes in an operand. **false (LENGTHOF counts the number of elements in an array.)**
+5. The SIZEOF operator returns the number of bytes in an operand. **true (= LENGTHOF * TYPE)**
+
+### 4.4 Section Review (p. 154)
+1. Any 32-bit general-purpose register can be used as an indirect operand. **true**
+2. The EBX register is usually reserved for addressing the stack. **false (It is EBP and ESP that are reserved for addressing the stack.)**
+3. The following instruction is invalid : `inc [esi]`. **true (PTR directive is required. see p. 150)**
+4. The following is an indexed operand: `array[esi]`. **true**
+5. Please refer to the textbook.
+6. Please refer to the textbook.
+
+### 4.5 Section Review (p. 160)

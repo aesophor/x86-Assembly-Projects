@@ -1,4 +1,5 @@
 ## x86 Assembly Midterm Notes
+
 ### 3.1 Section Review (p. 95)
 1. Using the value -35, write it as an integer literal in decimal, hexadecimal, octal and binary formats that are consistent with MASM syntax.
 2.  Is A5h a valid hexadecimal literal? **No. A leading 0 is required**
@@ -14,6 +15,7 @@
 .386
 .model flat,stdcall
 .stack 4096
+
 INCLUDE Irvine32.inc
 ExitProcess PROTO, dwExitCode:DWORD
 
@@ -61,4 +63,43 @@ Declare an uninitialized data for the following:
 5. Which data type can hold a 32-bit signed integer? **SDWORD**
 
 ### 3.5 Section Review (p. 120)
+```
+msg TEXTEQU <Some text> ; Text assigned to symbol  
+string TEXTEQU msg ; Text macro assigned to symbol  
+msg TEXTEQU <Some other text> ; New text assigned to symbol  
+value TEXTEQU %(3 + num) ; Text representation of resolved
+```
+```
+; Example 1
+var1 EQU 10 * 10    ; 100
+var2 EQU <10 * 10>  ; "10 * 10"
+var3 %(10 * 10)     ; "100"
 
+; Example 2
+rowSize = 5
+count TEXTEQU %(rowSize * 2)        ; Calculate value in %() and convert to text.
+move TEXTEQU <mov>                  ; Will replace "move" with "mov" afterward.
+setupAL TEXTEQU <move al, count>    ; setupAL TEXTEQU <mov>
+setupAL                             ; See below.
+
+;
+setupAL
+= move al, count
+= mov al, 10
+```
+1. Declare a symbolic constant using the equal-sign directive that contains the ASCII code (08h) for the Backspace key. **BACKSPACE = 08h**
+2. Declare a symbolic constant named SecondsInDay using the equal-sign directive and assign it an arithmetic expression that calculates the number of seconds in a 24-hour period. **SecondsInDay = 60 * 60 * 24**
+3. Write a statement that causes the assembler to calculate the number of bytes in the following array, and assign the value to a symbolic constant named ArraySize: 
+`myArray WORD 20 DUP(?)` **ArraySize = ($ - myArray)**
+4. Show how to calculate the number of elements in the following array, and assign the value to a symbolic constant named ArraySize:
+`myArray DWORD 30 DUP(?)` **ArraySize = ($ - myArray) / TYPE myArray**
+5. Use a TEXTEQU expression to redefine "proc" as "procedure". **procedure TEXTEQU \<proc\>**
+6. Use TEXTEQU to create a symbol named `Sample` for a string constant, and then use the symbol when defining a string variable named `myString`.
+**Sample TEXTEQU \<"lolcat", 0\>**
+**myString BYTE Sample**
+7. Use TEXTEQU to assign the symbol SetupESI to the following line of code:
+`mov esi, OFFSET myArray` **SetupESI TEXTEQU \<mov esi, OFFSET myArray\>**
+
+### 4.1 Section Review (p. 136)
+1. What are the three basic types of operands? **Register / Immediate / Memory**
+2. The destination operand of a MOV instruction cannot be a segment register?

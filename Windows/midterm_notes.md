@@ -148,6 +148,13 @@ a. mov ax, 7ff0h   ; 0111 1111 1111 0000
 * Further Reading: [carry flag vs overflow flag](https://stackoverflow.com/questions/8496185/assembly-carry-flag-vs-overflow-flag#13424707)
 
 ### 4.3 Section Review (p. 149)
+```
+OFFSET -> &
+PTR -> override || explicitly specify the following operand's size.
+TYPE -> get the following operand's size in bytes. (e.g., BYTE = 1, WORD = 2, DWORD = 4, QWORD = 8)
+LENGTHOF -> number of elements in an array.
+SIZEOF -> number of bytes of an array.
+```
 1. The OFFSET operator always returns a 16-bit value. **false**
 2. The PTR operator returns the 32-bit address of a variable. **false (PTR is used to override the declared size of an operand.)**
 3. The TYPE operator returns a value of 4 for doubleword operands. **true**
@@ -163,3 +170,40 @@ a. mov ax, 7ff0h   ; 0111 1111 1111 0000
 6. Please refer to the textbook.
 
 ### 4.5 Section Review (p. 160)
+1. A JMP instruction can only jump to a label inside the current procedure. **~~false~~ true**
+2. JMP is a conditional transfer instruction. **false**
+3. If ECX is initialized to zero before beginning a loop, how many times will the LOOP instruction repeat? (Suppose ECX won't be modified within the loop.) **0**
+4. The LOOP instruction first checks to see whether ECX is not equal to zero; then LOOP decrements ECX and jumps to the destination label. **false (decrement ECX and then check.)**
+5. The LOOP instruction does the following: It decrements ECX; then, if ECX is not equal to zero, LOOP jumps to the destination label. **true**
+6. In real-address mode, which register is used as the counter by LOOP instruction? **CX**
+7. In real-address mode, which register is used as the counter by the LOOPD instruction? **ECX**
+8. The target of a LOOP instruction must be within 256 bytes of the current location. **false (-128~127 bytes)**
+9. **The program won't stop! loop L1 will decrement ECX first, making it's value FFFFFFFFh.**
+10. 
+```
+    mov eax, 0
+    mov ecx, 10
+L1:
+    push ecx            ; save outer loop count
+    mov eax, 3
+    mov ecx, 5
+L2:
+    add eax, 5
+    loop L2
+    pop ecx             ; restore outer loop count
+    loop L1             ; dec ecx, jne L1.
+```
+
+### 4.6 Section Review (p. 163)
+1. Moving a constant value of 0FFh to the RAX register clears bits 8 through 63. **true**
+2. A 32-bit constant may be moved to a 64-bit register, but 64-bit constants are not permitted. **false (You can't mov 64-bit data into a 64-bit reg, you're kidding me, right?)**
+
+### 5.1 Section Review (p. 177)
+1. Which register (in 32-bit mode) manages the stack? **esp**
+2. How is the runtime stack different from the stack abstract data type? **The runtime stack is managed directly by the CPU. It holds the return addresses of called procedures.**
+3. Why is the stack called a LIFO structure? **Because it's Last In First Out. The last value pushed on the stack is the first value popped out from the stack.**
+4. When a 32-bit value is pushed on the stack, what happens to ESP? **ESP decremented by 4**
+5. Local variables in procedures are created on the stack. **true**
+6. The PUSH instruction cannot have an immediate operand. **false**
+
+### 5.2 Section Review (p. 185)

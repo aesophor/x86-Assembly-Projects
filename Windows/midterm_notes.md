@@ -207,3 +207,16 @@ L2:
 6. The PUSH instruction cannot have an immediate operand. **false**
 
 ### 5.2 Section Review (p. 185)
+1. The PROC directive begins a procedure and the ENDP directive ends a procedure. **true**
+2. It is possible to define a procedure inside an existing procedure. **false**
+3. What would happen if the RET instruction was omitted from a procedure. **It will continue executing the subsequent code.**
+4. How are the words Receives and Returns used in the suggested procedure documentation?
+5. The CALL instruction pushes the offset of the CALL instruction on the stack. **false. (It pushes the next instruction's address onto the stack.)**
+6. The CALL instruction pushes the offset of the instruction following the CALL on the stack. **true**
+
+### 5.3 Section Review (p. 187)
+1. A link library consists of assembly language source code. **false (It contains object code.)**
+2. Use the PROTO directive to declare a procedure named MyProc in an external link library. **MyProc PROTO**
+3. Write a CALL statement that calls a procedure named MyProc in an external link library. **call MyProc**
+4. What is the name of the 32-bit link library supplied with this book? **Irvine32.inc**
+5. What type of file is `kernel32.dll`? **Dynamic Linked Library which is fundamental to MS-Windows.**

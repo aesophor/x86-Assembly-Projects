@@ -16,7 +16,7 @@ section .text
     global _start
 
 
-_start:
+_start: 
     ; Read the first integer from stdin.
     print prompt_text1
     readVal num1_text, 8                ; Read 8 characters into num1_text

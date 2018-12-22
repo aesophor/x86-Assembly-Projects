@@ -1,0 +1,3 @@
+﻿  Assembling U10516045_console1.asm...
+C:\Irvine\SmallWin.inc(11): warning A4011: multiple .MODEL directives found : .MODEL ignored
+  U10516045_console1.vcxproj -> c:\users\aesophor\source\repos\U10516045_console1\Debug\U10516045_console1.exe

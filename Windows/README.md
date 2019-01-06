@@ -1,6 +1,3 @@
-## Cheatsheet.dat
-**Everything you need for the midterm is right here. Probably.**
-
 # Useful Procedures / Macros
 Here are some useful procedures collected from my weekly assignments. Requires Irvine32 library.
 

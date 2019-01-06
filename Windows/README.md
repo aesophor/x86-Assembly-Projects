@@ -1,4 +1,283 @@
 ## Cheatsheet.dat
 **Everything you need for the midterm is right here. Probably.**
 
-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
+# Useful Procedures / Macros
+Here are some useful procedures collected from my weekly assignments. Requires Irvine32 library.
+
+Each section contains two parts:
+* Procedure implementation
+* Example usage (predefined buffer + procedure call)
+
+## Template
+```
+.386
+.model flat,stdcall
+.stack 4096
+INCLUDE Irvine32.inc
+ExitProcess PROTO, dwExitCode:DWORD
+
+.data
+    ; declare variables here
+
+.code
+main PROC
+    ; write your code here
+    invoke ExitProcess,0
+main ENDP
+
+; (additional procedures here)
+END main
+```
+
+## Retrieve an Unsigned Integer from STDIN
+```
+itemcount DWORD ?
+```
+```
+call ReadInt
+mov itemcount, eax
+```
+
+## Menu
+```
+menu_prompt        BYTE "請選擇 (1) First Item (2) Second Item (3) Third Item (4) Exit",  0
+input_error_prompt BYTE "Malformed Input. Retry!",  0
+```
+```
+L3:
+    call Clrscr
+    mov edx, OFFSET menu_prompt
+    call WriteString
+
+    call ReadChar
+    mov choice, al
+    call Crlf
+
+    cmp al, '4'
+    jz L4
+
+    mov ecx, itemcount
+    mov esi, OFFSET randArray
+    mov edi, OFFSET targetArray
+L2:
+    mov eax, [esi]
+    mov [edi], eax
+    add esi, 4
+    add edi, 4
+    loop L2
+
+    mov al, choice
+    cmp al, '1'
+    jz no1
+    cmp al, '2'
+    jz no2
+    cmp al, '3'
+    jz no3
+
+    mov edx, OFFSET input_error_prompt
+    call WriteString
+    call Crlf
+    call WaitMsg
+    jmp L3
+no1:
+    mov esi, OFFSET targetArray
+    mov edi, esi
+    add edi, gap
+    call SelectionSort
+    call WaitMsg
+    mov esi, OFFSET targetArray
+    mov edi, esi
+    add edi, gap
+    call WriteIntegerArray
+    jmp L3
+no2:
+    mov esi, OFFSET targetArray
+    mov edi, esi
+    add edi, gap
+    call InsertionSort
+    call WaitMsg
+    mov esi, OFFSET targetArray
+    mov edi, esi
+    add edi, gap
+    call WriteIntegerArray
+    jmp L3
+no3:
+    mov esi, OFFSET targetArray
+    mov edi, esi
+    add edi, gap
+    call QuickSort
+    call WaitMsg
+    mov esi, OFFSET targetArray
+    mov edi, esi
+    add edi, gap
+    call WriteIntegerArray
+    jmp L3
+L4:
+    call Crlf
+    call WaitMsg
+    invoke ExitProcess,  0
+```
+
+## RandomRange with Upper & Lower Bounds
+```
+;------------------------------------------------
+; BetterRandomRange
+;
+; Generates a random integer within the sepcified
+; lowerbound and upperbound in EAX.
+; Receives: EAX = upperbound
+;           EBX = lowerbound
+; Returns: EAX = random integer
+;------------------------------------------------
+BetterRandomRange PROC
+    sub  eax, ebx
+    call RandomRange
+    add  eax, ebx
+    ret
+BetterRandomRange ENDP
+```
+```
+call Randomize
+mov eax, upperbound
+mov ebx, lowerbound
+call BetterRandomRange
+```
+
+## Write Integer Array
+```
+WriteIntegerArray PROC
+WIA:
+    mov eax, [esi]
+    call WriteInt
+    mov al, ','
+    call WriteChar
+    mov al, ' '
+    call WriteChar
+    add esi, 4
+    loop WIA
+    ret
+WriteIntegerArray ENDP
+```
+```
+randArray DWORD 51 DUP(0)
+```
+```
+mov esi, OFFSET randArray
+mov ecx, itemcount
+call WriteIntegerArray
+```
+
+## Reverse Integer Array
+```
+ReverseIntegerArray proc
+    push DWORD ptr [esi]
+    add esi, 4
+    loop RIA
+    pop DWORD ptr [edi]
+    add edi, 4
+    ret
+RIA:
+    call ReverseIntegerArray
+    pop DWORD ptr[edi]
+    add edi, 4
+    ret
+ReverseIntegerArray endp
+```
+```
+randArray DWORD 51 DUP(0)
+targetArray DWORD 51 DUP(0)
+```
+```
+mov esi, OFFSET randArray
+mov edi, OFFSET targetArray
+mov ecx, itemcount
+call ReverseIntegerArray
+```
+
+## Generate Random Integer Array
+```
+GenRandomIntegerArray proc
+    mov edi, 0
+GRIA:
+    mov eax, upperbound
+    mov ebx, lowerbound
+    call BetterRandomRange
+    mov [esi][edi], eax
+    add edi, TYPE esi
+    loop GRIA
+    ret
+GenRandomIntegerArray endp
+```
+```
+lowerbound DWORD ?
+upperbound DWORD ?
+```
+```
+mov esi, OFFSET randArray
+mov ecx, itemcount
+call GenRandomIntegerArray
+```
+
+## Generate a Fibonacci Sequence with the First n Items
+```
+GenerateFibonacci proc
+    mov ebx, 0
+    mov edx, 1
+    mov [esi], edx
+    dec ecx
+    mov edi, TYPE esi
+L1:
+    mov eax, ebx
+    add eax, edx
+    mov [esi][edi], eax
+    mov ebx, edx
+    mov edx, eax
+    add edi, TYPE esi
+    Loop L1
+    ret
+GenerateFibonacci endp
+```
+```
+mov esi, OFFSET fibArray
+mov ecx, itemcount
+call GenerateFibonacci
+```
+
+## Selection Sort
+```
+SelectionSort PROC
+   mov ebx, esi
+BSL1:
+   push esi
+   push edi
+   call WriteIntegerArray
+   pop edi
+   pop esi
+   call ReadChar
+   call Crlf
+   mov eax, [ebx]
+   push ebx
+BSL2:
+   add ebx, 4
+   cmp eax, [ebx]
+   jle BSL3
+   xchg eax, [ebx]
+BSL3:
+   cmp ebx, edi
+   jl BSL2
+   pop ebx
+   mov [ebx], eax
+   add ebx, 4
+   cmp ebx, edi
+   jl BSL1
+   ret
+SelectionSort ENDP
+```
+```
+mov esi, OFFSET targetArray
+mov edi, esi
+add edi, gap
+call SelectionSort
+```
+gap = itemcount * 4
+
